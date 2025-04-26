@@ -1,0 +1,8 @@
+[build]
+  command = "go build -o expenseowl ./cmd/expenseowl"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/expenseowl"
+  status = 200

@@ -1,9 +1,10 @@
 [build]
-  command = "go mod download && GOOS=linux GOARCH=amd64 go build -o netlify/functions/expenseowl ./cmd/expenseowl"
+  command = "docker build -t expenseowl-builder . && docker run --rm -v $(pwd)/netlify/functions:/output expenseowl-builder cp /app/bootstrap /output/expenseowl"
   functions = "netlify/functions"
+  publish = "/"
 
 [build.environment]
-  GO_VERSION = "1.23"
+  GO_VERSION = "1.23" # Keep this for the Go version inside the container
 
 [[redirects]]
   from = "/*"

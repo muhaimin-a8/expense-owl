@@ -1,6 +1,9 @@
 [build]
-  command = "go build -o expenseowl ./cmd/expenseowl"
+  command = "go mod download && GOOS=linux GOARCH=amd64 go build -o netlify/functions/expenseowl ./cmd/expenseowl"
   functions = "netlify/functions"
+
+[build.environment]
+  GO_VERSION = "1.23"
 
 [[redirects]]
   from = "/*"
